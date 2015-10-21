@@ -46,7 +46,7 @@ var config = {
 // ===============================================
 // style
 // 编译 sass 及生成 sourcemaps
-gulp.task('sass', function () {
+gulp.task('style', function () {
     return sass(config.src.scss, { sourcemap: true })
         .on('error', sass.logError)
         .pipe(autoprefixer({
@@ -72,26 +72,6 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(config.dist.css));
 });
 
-// 添加浏览器前缀及 压缩
-gulp.task('autoprefixer', function () {
-    return gulp.src(config.src.css)
-        .pipe(autoprefixer({
-            browsers: config.autoprefixerBrowsers,
-            cascade: false
-        }))
-        .pipe(gulp.dest(config.dist.css))
-
-        .pipe(concat('all.css'))
-        .pipe(gulp.dest(config.dist.css))
-
-        .pipe(minifycss({compatibility: 'ie8'}))
-        .pipe(rename({
-            suffix: '.min',
-            extname: '.css'
-        }))
-        .pipe(gulp.dest(config.dist.css));
-});
-
 
 // 清理
 gulp.task('clean', function() {
@@ -101,8 +81,8 @@ gulp.task('clean', function() {
 
 
 // 预设任务
-gulp.task('style', ['clean'], function() {
-    runSequence('sass', 'autoprefixer');
+gulp.task('default', ['clean'], function() {
+    runSequence('style');
 });
 
 // 样式
