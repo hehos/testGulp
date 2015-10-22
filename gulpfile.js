@@ -140,35 +140,24 @@ gulp.task('sprite', function () {
 
 // 监听
 gulp.task('watch', function() {
-
-    // 监听所有.scss
-    gulp.watch(config.src.scss, ['styles']);
-
-    // 监听所有.js文件
-    gulp.watch(config.src.js, ['scripts']);
-
-    // 监听所有图片文件
-    gulp.watch(config.src.img, ['images']);
-
-    // 建立即时重整伺服器
+    // 启动服务器
     var server = livereload();
 
-    // 监听所有位在 dist/  目录下的文件，一旦有更动，便进行更新
-    gulp.watch(['dist/**']).on('change', function(file) {
-        server.changed(file.path);
+    gulp.watch('./html/*.html', function(event) {
+        server.changed(event.path);
     });
 
 });
 
 // 清理
 gulp.task('clean', function() {
-    return gulp.src([config.dist.css, config.dist.js], {read: false})
+    return gulp.src([cf.dist.dir.css, cf.dist.dir.js], {read: false})
         .pipe(clean());
 });
 
 // 预设任务
 gulp.task('default', ['clean'], function() {
-    runSequence('style');
+    runSequence('sass');
 });
 
 //// 脚本
@@ -192,25 +181,3 @@ gulp.task('default', ['clean'], function() {
 //        .pipe(notify({ message: 'Images task complete' }));
 //});
 //
-
-// 监听
-//gulp.task('watch', function() {
-//
-//    // 监听所有.scss
-//    gulp.watch(config.src.scss, ['styles']);
-
-    //// 监听所有.js文件
-    //gulp.watch(config.src.js, ['scripts']);
-    //
-    //// 监听所有图片文件
-    //gulp.watch(config.src.img, ['images']);
-    //
-    //// 建立即时重整伺服器
-    //var server = livereload();
-    //
-    //// 监听所有位在 dist/  目录下的文件，一旦有更动，便进行更新
-    //gulp.watch(['dist/**']).on('change', function(file) {
-    //    server.changed(file.path);
-    //});
-
-//});
