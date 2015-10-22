@@ -3,10 +3,14 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
   	rename = require('gulp-rename'),
-    minifycss = require('gulp-minify-css')
+    minifycss = require('gulp-minify-css'),
+    imagemin = require('gulp-imagemin'),
+    spritesmith = require('gulp.spritesmith'),
+    csso = require('gulp-csso'),
+    merge = require('merge-stream'),
+    //pngquant = require('imagemin-pngquant'),  // 使用这个有问题
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
-    imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
     clean = require('gulp-clean'),
     concat = require('gulp-concat'),
@@ -22,12 +26,14 @@ var config = {
         scss: "./scss/**/*.scss",
         js: "./js/**/*.js",
         img: "./img/**/*",
+        sprite: './img/myicon/*.png',
         css: "./dist/css/**/*.css"
     },
     dist: {
         js: './dist/js',
         css: './dist/css',
         fonts: './dist/fonts',
+        img: './dist/img',
         maps: 'maps'
     },
     autoprefixerBrowsers: [
@@ -73,33 +79,53 @@ gulp.task('style', function () {
 });
 
 
+// ========================================================
+// 图片
+gulp.task('img', function () {
+    return gulp.src(config.src.img)
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}]
+        }))
+        .pipe(gulp.dest(config.dist.img));
+});
+
+
+// 生成雪碧图
+gulp.task('sprite', function () {
+    // Generate our spritesheet
+    var spriteData = gulp.src(config.src.sprite).pipe(spritesmith({
+        imgName: 'sprite.png',
+        cssName: 'sprite.css'
+    }));
+
+    // Pipe image stream through image optimizer and onto disk
+    var imgStream = spriteData.img
+        .pipe(imagemin())
+        .pipe(gulp.dest(config.dist.img));
+
+    // Pipe CSS stream through CSS optimizer and onto disk
+    var cssStream = spriteData.css
+        //.pipe(csso())  // 压缩css
+        .pipe(gulp.dest(config.dist.css));
+
+    // Return a merged stream to handle both `end` events
+    return merge(imgStream, cssStream);
+});
+
+
+// 监听
+
 // 清理
 gulp.task('clean', function() {
     return gulp.src([config.dist.css, config.dist.js], {read: false})
         .pipe(clean());
 });
 
-
 // 预设任务
 gulp.task('default', ['clean'], function() {
     runSequence('style');
 });
-
-// 样式
-//gulp.task('styles', function() {
-//    return gulp.src(config.src.scss)
-//        .pipe(compass({
-//            config_file: './config.rb',
-//            css: 'css',
-//            sass: 'scss'
-//        }))
-//        .pipe(gulp.dest(config.dist.css))
-//        .pipe(autoprefixer(config.autoprefixerBrowsers))
-//        .pipe(rename({ suffix: '.min' }))
-//        .pipe(minifycss())
-//        .pipe(gulp.dest(config.dist.css))
-//        .pipe(notify({ message: 'Styles task complete' }));
-//});
 
 //// 脚本
 //gulp.task('scripts', function() {
@@ -122,11 +148,6 @@ gulp.task('default', ['clean'], function() {
 //        .pipe(notify({ message: 'Images task complete' }));
 //});
 //
-//// 清理
-//gulp.task('clean', function() {
-//    return gulp.src(['dist/css', 'dist/js', 'dist/img'], {read: false})
-//        .pipe(clean());
-//});
 
 // 监听
 //gulp.task('watch', function() {

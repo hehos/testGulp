@@ -1,8 +1,7 @@
 npm init
 
-npm install gulp-autoprefixer --save-dev
-
-npm install run-sequence --save-dev
+npm install gulp-csso \
+            merge-stream --save-dev
 
 npm install \
     gulp \

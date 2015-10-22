@@ -1,0 +1,155 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-OICQ-icon {
+  background-image: url(sprite.png);
+  background-position: -517px -273px;
+  width: 24px;
+  height: 17px;
+}
+.icon-QQ-icon {
+  background-image: url(sprite.png);
+  background-position: -416px -273px;
+  width: 77px;
+  height: 22px;
+}
+.icon-QQ-icon2 {
+  background-image: url(sprite.png);
+  background-position: -532px -239px;
+  width: 74px;
+  height: 23px;
+}
+.icon-QQconsult-title {
+  background-image: url(sprite.png);
+  background-position: -416px -189px;
+  width: 116px;
+  height: 84px;
+}
+.icon-bottom-float {
+  background-image: url(sprite.png);
+  background-position: 0px 0px;
+  width: 416px;
+  height: 122px;
+}
+.icon-head-liangfang {
+  background-image: url(sprite.png);
+  background-position: 0px -344px;
+  width: 213px;
+  height: 51px;
+}
+.icon-hot {
+  background-image: url(sprite.png);
+  background-position: -577px -219px;
+  width: 29px;
+  height: 18px;
+}
+.icon-my-call {
+  background-image: url(sprite.png);
+  background-position: -532px -189px;
+  width: 45px;
+  height: 50px;
+}
+.icon-qrcode-hongbao {
+  background-image: url(sprite.png);
+  background-position: -222px -122px;
+  width: 86px;
+  height: 84px;
+}
+.icon-qrcode-service {
+  background-image: url(sprite.png);
+  background-position: -308px -122px;
+  width: 84px;
+  height: 84px;
+}
+.icon-qrcode-service2 {
+  background-image: url(sprite.png);
+  background-position: -416px 0px;
+  width: 196px;
+  height: 189px;
+}
+.icon-qrcode-yuyue-succeed {
+  background-image: url(sprite.png);
+  background-position: 0px -122px;
+  width: 222px;
+  height: 222px;
+}
+.icon-sort {
+  background-image: url(sprite.png);
+  background-position: -493px -273px;
+  width: 24px;
+  height: 20px;
+}
+.icon-top-logo {
+  background-image: url(sprite.png);
+  background-position: -416px -295px;
+  width: 40px;
+  height: 29px;
+}
+.icon-xiaoguo-cate1 {
+  background-image: url(sprite.png);
+  background-position: -252px -206px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate10 {
+  background-image: url(sprite.png);
+  background-position: -282px -206px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate2 {
+  background-image: url(sprite.png);
+  background-position: -312px -206px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate3 {
+  background-image: url(sprite.png);
+  background-position: -342px -206px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate4 {
+  background-image: url(sprite.png);
+  background-position: -372px -206px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate5 {
+  background-image: url(sprite.png);
+  background-position: -222px -236px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate6 {
+  background-image: url(sprite.png);
+  background-position: -252px -236px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate7 {
+  background-image: url(sprite.png);
+  background-position: -577px -189px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate8 {
+  background-image: url(sprite.png);
+  background-position: -282px -236px;
+  width: 30px;
+  height: 30px;
+}
+.icon-xiaoguo-cate9 {
+  background-image: url(sprite.png);
+  background-position: -222px -206px;
+  width: 30px;
+  height: 30px;
+}
