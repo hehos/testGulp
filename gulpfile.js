@@ -17,7 +17,8 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    inject = require('gulp-inject-string');
 
 
 var pkg = require('./package.json');
@@ -29,7 +30,8 @@ var cf = {
             js: 'js/**/*.js',
             img: ['!img/myicon/*.*', 'img/**/*'],
             sprite: 'img/myicon/*.png',
-            font: 'font/*'
+            font: 'font/*',
+            html: 'html/**/*.html'
         },
         dir: {
             scss: 'scss/',
@@ -48,7 +50,8 @@ var cf = {
             js: 'dist/js',
             css: 'dist/css',
             img: 'dist/img',
-            font: 'dist/font'
+            font: 'dist/font',
+            html: 'dist/html'
         }
     },
     autoprefixerBrowsers: [
@@ -63,6 +66,21 @@ var cf = {
     ],
     spritePrefix: '.myicon-'
 };
+
+gulp.task('testsass', function () {
+    return sass(['./**/*.scss', './**/*.scss'], { sourcemap: true })
+        .on('error', sass.logError)
+        .pipe(autoprefixer({
+            browsers: cf.autoprefixerBrowsers,
+            cascade: false
+        }))
+        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('map', {
+            includeContent: false,
+            sourceRoot: 'scss'
+        }))
+        .pipe(gulp.dest('.'))
+});
 
 
 // ===============================================
@@ -80,7 +98,9 @@ gulp.task('sass', function () {
             includeContent: false,
             sourceRoot: 'scss'
         }))
-        .pipe(gulp.dest(cf.src.dir.css));
+        .pipe(gulp.dest(cf.src.dir.css))
+
+        .pipe(livereload());
 });
 // optimize css  优化样式
 gulp.task('optimize', function () {
@@ -110,6 +130,14 @@ gulp.task('img', function () {
         .pipe(gulp.dest(cf.dist.dir.img));
 });
 
+// html
+gulp.task('html', function () {
+    return gulp.src(cf.src.file.html)
+
+        .pipe(inject.before('</head>', '<script src="http://localhost:35729/livereload.js"></script>'))
+        .pipe(gulp.dest(cf.dist.dir.html))
+        .pipe(livereload());
+});
 
 // 生成雪碧图
 gulp.task('sprite', function () {
@@ -141,11 +169,9 @@ gulp.task('sprite', function () {
 // 监听
 gulp.task('watch', function() {
     // 启动服务器
-    var server = livereload();
+    livereload.listen();
 
-    gulp.watch('./html/*.html', function(event) {
-        server.changed(event.path);
-    });
+    gulp.watch('./html/*.html', ['html']);
 
 });
 

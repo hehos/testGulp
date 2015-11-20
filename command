@@ -1,7 +1,9 @@
 npm init
 
 npm install gulp-csso \
-            merge-stream --save-dev
+            gulp-inject-string --save-dev
+
+npm install gulp-livereload --save-dev
 
 npm install \
     gulp \
@@ -23,6 +25,14 @@ npm install \
     --save-dev
 
 
+npm install \
+    gulp \
+    gulp-ruby-sass \
+    gulp-sourcemaps \
+    gulp-autoprefixer \
+    gulp-concat \
+    gulp-rename \
+    --save-dev
 
 
 
