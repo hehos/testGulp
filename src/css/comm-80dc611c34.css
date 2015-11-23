@@ -1,0 +1,17 @@
+.div1, .div2 {
+  width: 100px;
+  height: 75px;
+  background-color: yellow;
+  border: 1px solid black; }
+
+.div2 {
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg); }
+
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbW0tODBkYzYxMWMzNC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0VBQ2IsYUFBYTtFQUNiLHlCQUF5QjtFQUN6Qix3QkFBd0IsRUFBRTs7QUFFNUI7RUFDRSxpQ0FBeUI7RUFBekIsNkJBQXlCO0VBQXpCLDRCQUF5QjtFQUF6Qix5QkFBeUIsRUFBRSIsImZpbGUiOiJjb21tLTgwZGM2MTFjMzQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRpdjEsIC5kaXYyIHtcbiAgd2lkdGg6IDEwMHB4O1xuICBoZWlnaHQ6IDc1cHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHllbGxvdztcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7IH1cblxuLmRpdjIge1xuICB0cmFuc2Zvcm06IHJvdGF0ZSgzMGRlZyk7IH1cblxuXG4iXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0= */
+
+/*# sourceMappingURL=../map/comm-80dc611c34.css.map */
